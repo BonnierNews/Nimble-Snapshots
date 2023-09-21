@@ -3,12 +3,12 @@ import Foundation
 #endif
 
 /// A Nimble matcher that succeeds when the actual sequence contains the expected values.
-public func contain<S: Sequence>(_ items: S.Element...) -> Predicate<S> where S.Element: Equatable {
+public func contain<S: Sequence>(_ items: S.Element...) -> Nimble.Predicate<S> where S.Element: Equatable {
     return contain(items)
 }
 
 /// A Nimble matcher that succeeds when the actual sequence contains the expected values.
-public func contain<S: Sequence>(_ items: [S.Element]) -> Predicate<S> where S.Element: Equatable {
+public func contain<S: Sequence>(_ items: [S.Element]) -> Nimble.Predicate<S> where S.Element: Equatable {
     return Predicate.simple("contain <\(arrayAsString(items))>") { actualExpression in
         guard let actual = try actualExpression.evaluate() else { return .fail }
 
@@ -20,12 +20,12 @@ public func contain<S: Sequence>(_ items: [S.Element]) -> Predicate<S> where S.E
 }
 
 /// A Nimble matcher that succeeds when the actual set contains the expected values.
-public func contain<S: SetAlgebra>(_ items: S.Element...) -> Predicate<S> where S.Element: Equatable {
+public func contain<S: SetAlgebra>(_ items: S.Element...) -> Nimble.Predicate<S> where S.Element: Equatable {
     return contain(items)
 }
 
 /// A Nimble matcher that succeeds when the actual set contains the expected values.
-public func contain<S: SetAlgebra>(_ items: [S.Element]) -> Predicate<S> where S.Element: Equatable {
+public func contain<S: SetAlgebra>(_ items: [S.Element]) -> Nimble.Predicate<S> where S.Element: Equatable {
     return Predicate.simple("contain <\(arrayAsString(items))>") { actualExpression in
         guard let actual = try actualExpression.evaluate() else { return .fail }
 
@@ -37,12 +37,12 @@ public func contain<S: SetAlgebra>(_ items: [S.Element]) -> Predicate<S> where S
 }
 
 /// A Nimble matcher that succeeds when the actual set contains the expected values.
-public func contain<S: Sequence & SetAlgebra>(_ items: S.Element...) -> Predicate<S> where S.Element: Equatable {
+public func contain<S: Sequence & SetAlgebra>(_ items: S.Element...) -> Nimble.Predicate<S> where S.Element: Equatable {
     return contain(items)
 }
 
 /// A Nimble matcher that succeeds when the actual set contains the expected values.
-public func contain<S: Sequence & SetAlgebra>(_ items: [S.Element]) -> Predicate<S> where S.Element: Equatable {
+public func contain<S: Sequence & SetAlgebra>(_ items: [S.Element]) -> Nimble.Predicate<S> where S.Element: Equatable {
     return Predicate.simple("contain <\(arrayAsString(items))>") { actualExpression in
         guard let actual = try actualExpression.evaluate() else { return .fail }
 
@@ -54,11 +54,11 @@ public func contain<S: Sequence & SetAlgebra>(_ items: [S.Element]) -> Predicate
 }
 
 /// A Nimble matcher that succeeds when the actual string contains the expected substring.
-public func contain(_ substrings: String...) -> Predicate<String> {
+public func contain(_ substrings: String...) -> Nimble.Predicate<String> {
     return contain(substrings)
 }
 
-public func contain(_ substrings: [String]) -> Predicate<String> {
+public func contain(_ substrings: [String]) -> Nimble.Predicate<String> {
     return Predicate.simple("contain <\(arrayAsString(substrings))>") { actualExpression in
         guard let actual = try actualExpression.evaluate() else { return .fail }
 
@@ -72,11 +72,11 @@ public func contain(_ substrings: [String]) -> Predicate<String> {
 
 #if canImport(Foundation)
 /// A Nimble matcher that succeeds when the actual string contains the expected substring.
-public func contain(_ substrings: NSString...) -> Predicate<NSString> {
+public func contain(_ substrings: NSString...) -> Nimble.Predicate<NSString> {
     return contain(substrings)
 }
 
-public func contain(_ substrings: [NSString]) -> Predicate<NSString> {
+public func contain(_ substrings: [NSString]) -> Nimble.Predicate<NSString> {
     return Predicate.simple("contain <\(arrayAsString(substrings))>") { actualExpression in
         guard let actual = try actualExpression.evaluate() else { return .fail }
 
@@ -87,11 +87,11 @@ public func contain(_ substrings: [NSString]) -> Predicate<NSString> {
 #endif
 
 /// A Nimble matcher that succeeds when the actual collection contains the expected object.
-public func contain(_ items: Any?...) -> Predicate<NMBContainer> {
+public func contain(_ items: Any?...) -> Nimble.Predicate<NMBContainer> {
     return contain(items)
 }
 
-public func contain(_ items: [Any?]) -> Predicate<NMBContainer> {
+public func contain(_ items: [Any?]) -> Nimble.Predicate<NMBContainer> {
     return Predicate.simple("contain <\(arrayAsString(items))>") { actualExpression in
         guard let actual = try actualExpression.evaluate() else { return .fail }
 

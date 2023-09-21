@@ -4,7 +4,7 @@
 /// This is a matcher abstraction for https://developer.apple.com/documentation/swift/sequence/2854213-elementsequal
 public func elementsEqual<Seq1: Sequence, Seq2: Sequence>(
     _ expectedValue: Seq2?
-) -> Predicate<Seq1> where Seq1.Element: Equatable, Seq1.Element == Seq2.Element {
+) -> Nimble.Predicate<Seq1> where Seq1.Element: Equatable, Seq1.Element == Seq2.Element {
     return Predicate.define("elementsEqual <\(stringify(expectedValue))>") { (actualExpression, msg) in
         let actualValue = try actualExpression.evaluate()
         switch (expectedValue, actualValue) {
@@ -26,7 +26,7 @@ public func elementsEqual<Seq1: Sequence, Seq2: Sequence>(
 public func elementsEqual<Seq1: Sequence, Seq2: Sequence>(
     _ expectedValue: Seq2?,
     by areEquivalent: @escaping (Seq1.Element, Seq2.Element) -> Bool
-) -> Predicate<Seq1> {
+) -> Nimble.Predicate<Seq1> {
     return Predicate.define("elementsEqual <\(stringify(expectedValue))>") { (actualExpression, msg) in
         let actualValue = try actualExpression.evaluate()
         switch (expectedValue, actualValue) {

@@ -8,7 +8,7 @@ extension Optional: _OptionalProtocol {
 }
 
 /// A Nimble matcher that succeeds when the actual value is nil.
-public func beNil<T>() -> Predicate<T> {
+public func beNil<T>() -> Nimble.Predicate<T> {
     return Predicate.simpleNilable("be nil") { actualExpression in
         let actualValue = try actualExpression.evaluate()
         if let actual = actualValue, let nestedOptionl = actual as? _OptionalProtocol {

@@ -1321,7 +1321,7 @@ value and return a `Predicate` closure. Take `equal`, for example:
 ```swift
 // Swift
 
-public func equal<T: Equatable>(expectedValue: T?) -> Predicate<T> {
+public func equal<T: Equatable>(expectedValue: T?) -> Nimble.Predicate<T> {
     // Can be shortened to:
     //   Predicate { actual in  ... }
     //
@@ -1430,7 +1430,7 @@ custom matchers should call `actualExpression.evaluate()`:
 ```swift
 // Swift
 
-public func beNil<T>() -> Predicate<T> {
+public func beNil<T>() -> Nimble.Predicate<T> {
     // Predicate.simpleNilable(..) automatically generates ExpectationMessage for
     // us based on the string we provide to it. Also, the 'Nilable' postfix indicates
     // that this Predicate supports matching against nil actualExpressions, instead of
@@ -1460,7 +1460,7 @@ against the one provided to the matcher function, and passes if they are the sam
 ```swift
 // Swift
 
-public func haveDescription(description: String) -> Predicate<Printable?> {
+public func haveDescription(description: String) -> Nimble.Predicate<Printable?> {
     return Predicate.simple("have description") { actual in
         return PredicateStatus(bool: actual.evaluate().description == description)
     }
@@ -1488,7 +1488,7 @@ with `Predicate.define(..)`:
 ```swift
 // Swift
 
-public func equal<T: Equatable>(_ expectedValue: T?) -> Predicate<T> {
+public func equal<T: Equatable>(_ expectedValue: T?) -> Nimble.Predicate<T> {
     return Predicate.define("equal <\(stringify(expectedValue))>") { actualExpression, msg in
         let actualValue = try actualExpression.evaluate()
         let matches = actualValue == expectedValue && expectedValue != nil
@@ -1624,7 +1624,7 @@ If your matcher does not want to match with nil, you use `Predicate.define` or `
 Using those factory methods will automatically generate expected value failure messages when they're nil.
 
 ```swift
-public func beginWith<S: Sequence>(_ startingElement: S.Element) -> Predicate<S> where S.Element: Equatable {
+public func beginWith<S: Sequence>(_ startingElement: S.Element) -> Nimble.Predicate<S> where S.Element: Equatable {
     return Predicate.simple("begin with <\(startingElement)>") { actualExpression in
         guard let actualValue = try actualExpression.evaluate() else { return .fail }
 

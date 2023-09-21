@@ -1,5 +1,5 @@
 /// A Nimble matcher that succeeds when the actual value is within given range.
-public func beWithin<T: Comparable>(_ range: Range<T>) -> Predicate<T> {
+public func beWithin<T: Comparable>(_ range: Range<T>) -> Nimble.Predicate<T> {
     let errorMessage = "be within range <(\(range.lowerBound)..<\(range.upperBound))>"
     return Predicate.simple(errorMessage) { actualExpression in
         if let actual = try actualExpression.evaluate() {
@@ -10,7 +10,7 @@ public func beWithin<T: Comparable>(_ range: Range<T>) -> Predicate<T> {
 }
 
 /// A Nimble matcher that succeeds when the actual value is within given range.
-public func beWithin<T: Comparable>(_ range: ClosedRange<T>) -> Predicate<T> {
+public func beWithin<T: Comparable>(_ range: ClosedRange<T>) -> Nimble.Predicate<T> {
     let errorMessage = "be within range <(\(range.lowerBound)...\(range.upperBound))>"
     return Predicate.simple(errorMessage) { actualExpression in
         if let actual = try actualExpression.evaluate() {

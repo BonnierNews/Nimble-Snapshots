@@ -1,6 +1,6 @@
 public func containElementSatisfying<S: Sequence>(
     _ predicate: @escaping ((S.Element) -> Bool), _ predicateDescription: String = ""
-) -> Predicate<S> {
+) -> Nimble.Predicate<S> {
     return Predicate.define { actualExpression in
         let message: ExpectationMessage
         if predicateDescription == "" {

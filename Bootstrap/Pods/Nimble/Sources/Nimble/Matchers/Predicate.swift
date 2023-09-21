@@ -16,7 +16,7 @@
 /// The Predicate provide the heavy lifting on how to assert against a given value. Internally,
 /// predicates are simple wrappers around closures to provide static type information and
 /// allow composition and wrapping of existing behaviors.
-public struct Predicate<T> {
+public struct Nimble.Predicate<T> {
     fileprivate var matcher: (Expression<T>) throws -> PredicateResult
 
     /// Constructs a predicate that knows how take a given value
@@ -36,24 +36,24 @@ public struct Predicate<T> {
 /// Provides convenience helpers to defining predicates
 extension Predicate {
     /// Like Predicate() constructor, but automatically guard against nil (actual) values
-    public static func define(matcher: @escaping (Expression<T>) throws -> PredicateResult) -> Predicate<T> {
-        return Predicate<T> { actual in
+    public static func define(matcher: @escaping (Expression<T>) throws -> PredicateResult) -> Nimble.Predicate<T> {
+        return Nimble.Predicate<T> { actual in
             return try matcher(actual)
         }.requireNonNil
     }
 
     /// Defines a predicate with a default message that can be returned in the closure
     /// Also ensures the predicate's actual value cannot pass with `nil` given.
-    public static func define(_ message: String = "match", matcher: @escaping (Expression<T>, ExpectationMessage) throws -> PredicateResult) -> Predicate<T> {
-        return Predicate<T> { actual in
+    public static func define(_ message: String = "match", matcher: @escaping (Expression<T>, ExpectationMessage) throws -> PredicateResult) -> Nimble.Predicate<T> {
+        return Nimble.Predicate<T> { actual in
             return try matcher(actual, .expectedActualValueTo(message))
         }.requireNonNil
     }
 
     /// Defines a predicate with a default message that can be returned in the closure
     /// Unlike `define`, this allows nil values to succeed if the given closure chooses to.
-    public static func defineNilable(_ message: String = "match", matcher: @escaping (Expression<T>, ExpectationMessage) throws -> PredicateResult) -> Predicate<T> {
-        return Predicate<T> { actual in
+    public static func defineNilable(_ message: String = "match", matcher: @escaping (Expression<T>, ExpectationMessage) throws -> PredicateResult) -> Nimble.Predicate<T> {
+        return Nimble.Predicate<T> { actual in
             return try matcher(actual, .expectedActualValueTo(message))
         }
     }
@@ -64,8 +64,8 @@ extension Predicate {
     /// error message.
     ///
     /// Also ensures the predicate's actual value cannot pass with `nil` given.
-    public static func simple(_ message: String = "match", matcher: @escaping (Expression<T>) throws -> PredicateStatus) -> Predicate<T> {
-        return Predicate<T> { actual in
+    public static func simple(_ message: String = "match", matcher: @escaping (Expression<T>) throws -> PredicateStatus) -> Nimble.Predicate<T> {
+        return Nimble.Predicate<T> { actual in
             return PredicateResult(status: try matcher(actual), message: .expectedActualValueTo(message))
         }.requireNonNil
     }
@@ -74,8 +74,8 @@ extension Predicate {
     /// error message.
     ///
     /// Unlike `simple`, this allows nil values to succeed if the given closure chooses to.
-    public static func simpleNilable(_ message: String = "match", matcher: @escaping (Expression<T>) throws -> PredicateStatus) -> Predicate<T> {
-        return Predicate<T> { actual in
+    public static func simpleNilable(_ message: String = "match", matcher: @escaping (Expression<T>) throws -> PredicateStatus) -> Nimble.Predicate<T> {
+        return Nimble.Predicate<T> { actual in
             return PredicateResult(status: try matcher(actual), message: .expectedActualValueTo(message))
         }
     }
@@ -167,7 +167,7 @@ public enum PredicateStatus {
 
 extension Predicate {
     // Someday, make this public? Needs documentation
-    internal func after(f: @escaping (Expression<T>, PredicateResult) throws -> PredicateResult) -> Predicate<T> {
+    internal func after(f: @escaping (Expression<T>, PredicateResult) throws -> PredicateResult) -> Nimble.Predicate<T> {
         // swiftlint:disable:previous identifier_name
         return Predicate { actual -> PredicateResult in
             let result = try self.satisfies(actual)
@@ -177,7 +177,7 @@ extension Predicate {
 
     /// Returns a new Predicate based on the current one that always fails if nil is given as
     /// the actual value.
-    public var requireNonNil: Predicate<T> {
+    public var requireNonNil: Nimble.Predicate<T> {
         return after { actual, result in
             if try actual.evaluate() == nil {
                 return PredicateResult(

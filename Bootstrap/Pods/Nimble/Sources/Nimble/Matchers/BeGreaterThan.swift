@@ -1,5 +1,5 @@
 /// A Nimble matcher that succeeds when the actual value is greater than the expected value.
-public func beGreaterThan<T: Comparable>(_ expectedValue: T?) -> Predicate<T> {
+public func beGreaterThan<T: Comparable>(_ expectedValue: T?) -> Nimble.Predicate<T> {
     let errorMessage = "be greater than <\(stringify(expectedValue))>"
     return Predicate.simple(errorMessage) { actualExpression in
         guard let actual = try actualExpression.evaluate(), let expected = expectedValue else { return .fail }
@@ -16,7 +16,7 @@ public func ><T: Comparable>(lhs: Expectation<T>, rhs: T) {
 import enum Foundation.ComparisonResult
 
 /// A Nimble matcher that succeeds when the actual value is greater than the expected value.
-public func beGreaterThan(_ expectedValue: NMBComparable?) -> Predicate<NMBComparable> {
+public func beGreaterThan(_ expectedValue: NMBComparable?) -> Nimble.Predicate<NMBComparable> {
     let errorMessage = "be greater than <\(stringify(expectedValue))>"
     return Predicate.simple(errorMessage) { actualExpression in
         let actualValue = try actualExpression.evaluate()

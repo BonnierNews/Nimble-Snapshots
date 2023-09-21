@@ -1,7 +1,7 @@
 public func allPass<S: Sequence>(
     _ passFunc: @escaping (S.Element) throws -> Bool
-) -> Predicate<S> {
-    let matcher = Predicate<S.Element>.define("pass a condition") { actualExpression, message in
+) -> Nimble.Predicate<S> {
+    let matcher = Nimble.Predicate<S.Element>.define("pass a condition") { actualExpression, message in
         guard let actual = try actualExpression.evaluate() else {
             return PredicateResult(status: .fail, message: message)
         }
@@ -13,8 +13,8 @@ public func allPass<S: Sequence>(
 public func allPass<S: Sequence>(
     _ passName: String,
     _ passFunc: @escaping (S.Element) throws -> Bool
-) -> Predicate<S> {
-    let matcher = Predicate<S.Element>.define(passName) { actualExpression, message in
+) -> Nimble.Predicate<S> {
+    let matcher = Nimble.Predicate<S.Element>.define(passName) { actualExpression, message in
         guard let actual = try actualExpression.evaluate() else {
             return PredicateResult(status: .fail, message: message)
         }
@@ -23,11 +23,11 @@ public func allPass<S: Sequence>(
     return createPredicate(matcher)
 }
 
-public func allPass<S: Sequence>(_ elementPredicate: Predicate<S.Element>) -> Predicate<S> {
+public func allPass<S: Sequence>(_ elementPredicate: Nimble.Predicate<S.Element>) -> Nimble.Predicate<S> {
     return createPredicate(elementPredicate)
 }
 
-private func createPredicate<S: Sequence>(_ elementMatcher: Predicate<S.Element>) -> Predicate<S> {
+private func createNimble.Predicate<S: Sequence>(_ elementMatcher: Nimble.Predicate<S.Element>) -> Nimble.Predicate<S> {
     return Predicate { actualExpression in
         guard let actualValue = try actualExpression.evaluate() else {
             return PredicateResult(
@@ -101,7 +101,7 @@ extension NMBPredicate {
             }
 
             let expr = Expression(expression: ({ nsObjects }), location: location)
-            let pred: Predicate<[NSObject]> = createPredicate(Predicate { expr in
+            let pred: Nimble.Predicate<[NSObject]> = createPredicate(Predicate { expr in
                 return predicate.satisfies(({ try expr.evaluate() }), location: expr.location).toSwift()
             })
             return try pred.satisfies(expr).toObjectiveC()

@@ -82,7 +82,7 @@ public func catchBadInstruction(block: @escaping () -> Void) -> BadInstructionEx
 // swiftlint:enable all
 #endif
 
-public func throwAssertion<Out>() -> Predicate<Out> {
+public func throwAssertion<Out>() -> Nimble.Predicate<Out> {
     return Predicate { actualExpression in
     #if os(watchOS)
         fatalError("Nimble currently doesn't support watchOS.")

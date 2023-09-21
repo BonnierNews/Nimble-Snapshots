@@ -5,7 +5,7 @@
 
 /// A Nimble matcher that succeeds when the actual Collection's count equals
 /// the expected value
-public func haveCount<T: Collection>(_ expectedValue: Int) -> Predicate<T> {
+public func haveCount<T: Collection>(_ expectedValue: Int) -> Nimble.Predicate<T> {
     return Predicate.define { actualExpression in
         if let actualValue = try actualExpression.evaluate() {
             let message = ExpectationMessage
@@ -25,7 +25,7 @@ public func haveCount<T: Collection>(_ expectedValue: Int) -> Predicate<T> {
 
 /// A Nimble matcher that succeeds when the actual collection's count equals
 /// the expected value
-public func haveCount(_ expectedValue: Int) -> Predicate<NMBCollection> {
+public func haveCount(_ expectedValue: Int) -> Nimble.Predicate<NMBCollection> {
     return Predicate { actualExpression in
         if let actualValue = try actualExpression.evaluate() {
             let message = ExpectationMessage

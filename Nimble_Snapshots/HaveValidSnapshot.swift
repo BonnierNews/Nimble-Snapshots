@@ -280,7 +280,7 @@ public func haveValidSnapshot(named name: String? = nil,
                               usesDrawRect: Bool = false,
                               pixelTolerance: CGFloat? = nil,
                               tolerance: CGFloat? = nil,
-                              shouldIgnoreScale: Bool = false) -> Predicate<Snapshotable> {
+                              shouldIgnoreScale: Bool = false) -> Nimble.Predicate<Snapshotable> {
 
     return Predicate { actualExpression in
         if switchChecksWithRecords {
@@ -306,7 +306,7 @@ public func haveValidDeviceAgnosticSnapshot(named name: String? = nil,
                                             usesDrawRect: Bool = false,
                                             pixelTolerance: CGFloat? = nil,
                                             tolerance: CGFloat? = nil,
-                                            shouldIgnoreScale: Bool = false) -> Predicate<Snapshotable> {
+                                            shouldIgnoreScale: Bool = false) -> Nimble.Predicate<Snapshotable> {
 
     return Predicate { actualExpression in
         if switchChecksWithRecords {
@@ -332,7 +332,7 @@ public func haveValidDeviceAgnosticSnapshot(named name: String? = nil,
 public func recordSnapshot(named name: String? = nil,
                            identifier: String? = nil,
                            usesDrawRect: Bool = false,
-                           shouldIgnoreScale: Bool = false) -> Predicate<Snapshotable> {
+                           shouldIgnoreScale: Bool = false) -> Nimble.Predicate<Snapshotable> {
 
     return Predicate { actualExpression in
         return recordSnapshot(name, identifier: identifier, usesDrawRect: usesDrawRect,
@@ -344,7 +344,7 @@ public func recordSnapshot(named name: String? = nil,
 public func recordDeviceAgnosticSnapshot(named name: String? = nil,
                                          identifier: String? = nil,
                                          usesDrawRect: Bool = false,
-                                         shouldIgnoreScale: Bool = false) -> Predicate<Snapshotable> {
+                                         shouldIgnoreScale: Bool = false) -> Nimble.Predicate<Snapshotable> {
 
     return Predicate { actualExpression in
         return recordSnapshot(name, identifier: identifier, isDeviceAgnostic: true, usesDrawRect: usesDrawRect,

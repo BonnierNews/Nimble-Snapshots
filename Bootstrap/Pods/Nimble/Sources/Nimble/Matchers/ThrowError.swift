@@ -9,7 +9,7 @@
 ///
 /// nil arguments indicates that the matcher should not attempt to match against
 /// that parameter.
-public func throwError<Out>() -> Predicate<Out> {
+public func throwError<Out>() -> Nimble.Predicate<Out> {
     return Predicate { actualExpression in
         var actualError: Error?
         do {
@@ -43,7 +43,7 @@ public func throwError<Out>() -> Predicate<Out> {
 ///
 /// nil arguments indicates that the matcher should not attempt to match against
 /// that parameter.
-public func throwError<T: Error, Out>(_ error: T, closure: ((Error) -> Void)? = nil) -> Predicate<Out> {
+public func throwError<T: Error, Out>(_ error: T, closure: ((Error) -> Void)? = nil) -> Nimble.Predicate<Out> {
     return Predicate { actualExpression in
         var actualError: Error?
         do {
@@ -89,7 +89,7 @@ public func throwError<T: Error, Out>(_ error: T, closure: ((Error) -> Void)? = 
 ///
 /// nil arguments indicates that the matcher should not attempt to match against
 /// that parameter.
-public func throwError<T: Error & Equatable, Out>(_ error: T, closure: ((T) -> Void)? = nil) -> Predicate<Out> {
+public func throwError<T: Error & Equatable, Out>(_ error: T, closure: ((T) -> Void)? = nil) -> Nimble.Predicate<Out> {
     return Predicate { actualExpression in
         var actualError: Error?
         do {
@@ -138,7 +138,7 @@ public func throwError<T: Error & Equatable, Out>(_ error: T, closure: ((T) -> V
 public func throwError<T: Error, Out>(
     errorType: T.Type,
     closure: ((T) -> Void)? = nil
-) -> Predicate<Out> {
+) -> Nimble.Predicate<Out> {
     return Predicate { actualExpression in
         var actualError: Error?
         do {
@@ -197,7 +197,7 @@ public func throwError<T: Error, Out>(
 /// values of the existential type `Error` in the closure.
 ///
 /// The closure only gets called when an error was thrown.
-public func throwError<Out>(closure: @escaping ((Error) -> Void)) -> Predicate<Out> {
+public func throwError<Out>(closure: @escaping ((Error) -> Void)) -> Nimble.Predicate<Out> {
     return Predicate { actualExpression in
         var actualError: Error?
         do {
@@ -232,7 +232,7 @@ public func throwError<Out>(closure: @escaping ((Error) -> Void)) -> Predicate<O
 /// values of the existential type `Error` in the closure.
 ///
 /// The closure only gets called when an error was thrown.
-public func throwError<T: Error, Out>(closure: @escaping ((T) -> Void)) -> Predicate<Out> {
+public func throwError<T: Error, Out>(closure: @escaping ((T) -> Void)) -> Nimble.Predicate<Out> {
     return Predicate { actualExpression in
         var actualError: Error?
         do {

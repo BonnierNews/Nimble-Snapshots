@@ -43,10 +43,10 @@ internal class NotificationCollector {
 private let mainThread = pthread_self()
 
 private func _postNotifications<Out>(
-    _ predicate: Predicate<[Notification]>,
+    _ predicate: Nimble.Predicate<[Notification]>,
     from center: NotificationCenter,
     names: Set<Notification.Name> = []
-) -> Predicate<Out> {
+) -> Nimble.Predicate<Out> {
     _ = mainThread // Force lazy-loading of this value
     let collector = NotificationCollector(notificationCenter: center, names: names)
     collector.startObserving()
@@ -83,18 +83,18 @@ private func _postNotifications<Out>(
 }
 
 public func postNotifications<Out>(
-    _ predicate: Predicate<[Notification]>,
+    _ predicate: Nimble.Predicate<[Notification]>,
     from center: NotificationCenter = .default
-) -> Predicate<Out> {
+) -> Nimble.Predicate<Out> {
     _postNotifications(predicate, from: center)
 }
 
 #if os(macOS)
 public func postDistributedNotifications<Out>(
-    _ predicate: Predicate<[Notification]>,
+    _ predicate: Nimble.Predicate<[Notification]>,
     from center: DistributedNotificationCenter = .default(),
     names: Set<Notification.Name>
-) -> Predicate<Out> {
+) -> Nimble.Predicate<Out> {
     _postNotifications(predicate, from: center, names: names)
 }
 #endif

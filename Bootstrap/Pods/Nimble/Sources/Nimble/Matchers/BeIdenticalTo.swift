@@ -1,6 +1,6 @@
 /// A Nimble matcher that succeeds when the actual value is the same instance
 /// as the expected instance.
-public func beIdenticalTo(_ expected: AnyObject?) -> Predicate<AnyObject> {
+public func beIdenticalTo(_ expected: AnyObject?) -> Nimble.Predicate<AnyObject> {
     return Predicate.define { actualExpression in
         let actual = try actualExpression.evaluate()
 
@@ -29,7 +29,7 @@ extension Expectation where T == AnyObject {
 /// as the expected instance.
 ///
 /// Alias for "beIdenticalTo".
-public func be(_ expected: AnyObject?) -> Predicate<AnyObject> {
+public func be(_ expected: AnyObject?) -> Nimble.Predicate<AnyObject> {
     return beIdenticalTo(expected)
 }
 

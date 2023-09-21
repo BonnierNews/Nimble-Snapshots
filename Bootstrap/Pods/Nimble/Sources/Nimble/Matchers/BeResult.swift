@@ -6,7 +6,7 @@ import Foundation
 /// The closure only gets called when the result is success.
 public func beSuccess<Success, Failure>(
     test: ((Success) -> Void)? = nil
-) -> Predicate<Result<Success, Failure>> {
+) -> Nimble.Predicate<Result<Success, Failure>> {
     return Predicate.define { expression in
         var rawMessage = "be <success(\(Success.self))>"
         if test != nil {
@@ -39,7 +39,7 @@ public func beSuccess<Success, Failure>(
 /// The closure only gets called when the result is failure.
 public func beFailure<Success, Failure>(
     test: ((Failure) -> Void)? = nil
-) -> Predicate<Result<Success, Failure>> {
+) -> Nimble.Predicate<Result<Success, Failure>> {
     return Predicate.define { expression in
         var rawMessage = "be <failure(\(Failure.self))>"
         if test != nil {

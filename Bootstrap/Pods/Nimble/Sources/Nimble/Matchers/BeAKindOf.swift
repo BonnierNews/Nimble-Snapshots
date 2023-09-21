@@ -6,7 +6,7 @@ private func matcherMessage(forClass expectedClass: AnyClass) -> String {
 }
 
 /// A Nimble matcher that succeeds when the actual value is an instance of the given class.
-public func beAKindOf<T>(_ expectedType: T.Type) -> Predicate<Any> {
+public func beAKindOf<T>(_ expectedType: T.Type) -> Nimble.Predicate<Any> {
     return Predicate.define { actualExpression in
         let message: ExpectationMessage
 
@@ -32,7 +32,7 @@ import class Foundation.NSObject
 
 /// A Nimble matcher that succeeds when the actual value is an instance of the given class.
 /// @see beAnInstanceOf if you want to match against the exact class
-public func beAKindOf(_ expectedClass: AnyClass) -> Predicate<NSObject> {
+public func beAKindOf(_ expectedClass: AnyClass) -> Nimble.Predicate<NSObject> {
     return Predicate.define { actualExpression in
         let message: ExpectationMessage
         let status: PredicateStatus

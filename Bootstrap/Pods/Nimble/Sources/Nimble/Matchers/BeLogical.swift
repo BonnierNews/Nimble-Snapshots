@@ -72,7 +72,7 @@ extension UInt: ExpressibleByBooleanLiteral {
     }
 }
 
-internal func rename<T>(_ matcher: Predicate<T>, failureMessage message: ExpectationMessage) -> Predicate<T> {
+internal func rename<T>(_ matcher: Nimble.Predicate<T>, failureMessage message: ExpectationMessage) -> Nimble.Predicate<T> {
     return Predicate { actualExpression in
         let result = try matcher.satisfies(actualExpression)
         return PredicateResult(status: result.status, message: message)
@@ -83,20 +83,20 @@ internal func rename<T>(_ matcher: Predicate<T>, failureMessage message: Expecta
 
 /// A Nimble matcher that succeeds when the actual value is exactly true.
 /// This matcher will not match against nils.
-public func beTrue() -> Predicate<Bool> {
+public func beTrue() -> Nimble.Predicate<Bool> {
     return rename(equal(true), failureMessage: .expectedActualValueTo("be true"))
 }
 
 /// A Nimble matcher that succeeds when the actual value is exactly false.
 /// This matcher will not match against nils.
-public func beFalse() -> Predicate<Bool> {
+public func beFalse() -> Nimble.Predicate<Bool> {
     return rename(equal(false), failureMessage: .expectedActualValueTo("be false"))
 }
 
 // MARK: beTruthy() / beFalsy()
 
 /// A Nimble matcher that succeeds when the actual value is not logically false.
-public func beTruthy<T: ExpressibleByBooleanLiteral & Equatable>() -> Predicate<T> {
+public func beTruthy<T: ExpressibleByBooleanLiteral & Equatable>() -> Nimble.Predicate<T> {
     return Predicate.simpleNilable("be truthy") { actualExpression in
         let actualValue = try actualExpression.evaluate()
         return PredicateStatus(bool: actualValue == (true as T))
@@ -105,7 +105,7 @@ public func beTruthy<T: ExpressibleByBooleanLiteral & Equatable>() -> Predicate<
 
 /// A Nimble matcher that succeeds when the actual value is logically false.
 /// This matcher will match against nils.
-public func beFalsy<T: ExpressibleByBooleanLiteral & Equatable>() -> Predicate<T> {
+public func beFalsy<T: ExpressibleByBooleanLiteral & Equatable>() -> Nimble.Predicate<T> {
     return Predicate.simpleNilable("be falsy") { actualExpression in
         let actualValue = try actualExpression.evaluate()
         return PredicateStatus(bool: actualValue != (true as T))

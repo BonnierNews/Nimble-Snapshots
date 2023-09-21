@@ -3,7 +3,7 @@
 ///
 /// Errors are tried to be compared by their implementation of Equatable,
 /// otherwise they fallback to comparison by _domain and _code.
-public func matchError<T: Error>(_ error: T) -> Predicate<Error> {
+public func matchError<T: Error>(_ error: T) -> Nimble.Predicate<Error> {
     return Predicate.define { actualExpression in
         let actualError = try actualExpression.evaluate()
 
@@ -27,7 +27,7 @@ public func matchError<T: Error>(_ error: T) -> Predicate<Error> {
 ///
 /// Errors are tried to be compared by their implementation of Equatable,
 /// otherwise they fallback to comparision by _domain and _code.
-public func matchError<T: Error & Equatable>(_ error: T) -> Predicate<Error> {
+public func matchError<T: Error & Equatable>(_ error: T) -> Nimble.Predicate<Error> {
     return Predicate.define { actualExpression in
         let actualError = try actualExpression.evaluate()
 
@@ -48,7 +48,7 @@ public func matchError<T: Error & Equatable>(_ error: T) -> Predicate<Error> {
 
 /// A Nimble matcher that succeeds when the actual expression evaluates to an
 /// error of the specified type
-public func matchError<T: Error>(_ errorType: T.Type) -> Predicate<Error> {
+public func matchError<T: Error>(_ errorType: T.Type) -> Nimble.Predicate<Error> {
     return Predicate.define { actualExpression in
         let actualError = try actualExpression.evaluate()
 

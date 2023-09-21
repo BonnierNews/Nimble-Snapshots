@@ -2,7 +2,7 @@ import Foundation
 
 /// A Nimble matcher that succeeds when a value is "empty". For collections, this
 /// means the are no items in that collection. For strings, it is an empty string.
-public func beEmpty<S: Sequence>() -> Predicate<S> {
+public func beEmpty<S: Sequence>() -> Nimble.Predicate<S> {
     return Predicate.simple("be empty") { actualExpression in
         guard let actual = try actualExpression.evaluate() else { return .fail }
 
@@ -13,7 +13,7 @@ public func beEmpty<S: Sequence>() -> Predicate<S> {
 
 /// A Nimble matcher that succeeds when a value is "empty". For collections, this
 /// means the are no items in that collection. For strings, it is an empty string.
-public func beEmpty<S: SetAlgebra>() -> Predicate<S> {
+public func beEmpty<S: SetAlgebra>() -> Nimble.Predicate<S> {
     return Predicate.simple("be empty") { actualExpression in
         guard let actual = try actualExpression.evaluate() else { return .fail }
         return PredicateStatus(bool: actual.isEmpty)
@@ -22,7 +22,7 @@ public func beEmpty<S: SetAlgebra>() -> Predicate<S> {
 
 /// A Nimble matcher that succeeds when a value is "empty". For collections, this
 /// means the are no items in that collection. For strings, it is an empty string.
-public func beEmpty<S: Sequence & SetAlgebra>() -> Predicate<S> {
+public func beEmpty<S: Sequence & SetAlgebra>() -> Nimble.Predicate<S> {
     return Predicate.simple("be empty") { actualExpression in
         guard let actual = try actualExpression.evaluate() else { return .fail }
         return PredicateStatus(bool: actual.isEmpty)
@@ -31,7 +31,7 @@ public func beEmpty<S: Sequence & SetAlgebra>() -> Predicate<S> {
 
 /// A Nimble matcher that succeeds when a value is "empty". For collections, this
 /// means the are no items in that collection. For strings, it is an empty string.
-public func beEmpty() -> Predicate<String> {
+public func beEmpty() -> Nimble.Predicate<String> {
     return Predicate.simple("be empty") { actualExpression in
         guard let actual = try actualExpression.evaluate() else { return .fail }
         return PredicateStatus(bool: actual.isEmpty)
@@ -40,7 +40,7 @@ public func beEmpty() -> Predicate<String> {
 
 /// A Nimble matcher that succeeds when a value is "empty". For collections, this
 /// means the are no items in that collection. For NSString instances, it is an empty string.
-public func beEmpty() -> Predicate<NSString> {
+public func beEmpty() -> Nimble.Predicate<NSString> {
     return Predicate.simple("be empty") { actualExpression in
         guard let actual = try actualExpression.evaluate() else { return .fail }
         return PredicateStatus(bool: actual.length == 0)
@@ -52,7 +52,7 @@ public func beEmpty() -> Predicate<NSString> {
 
 /// A Nimble matcher that succeeds when a value is "empty". For collections, this
 /// means the are no items in that collection. For strings, it is an empty string.
-public func beEmpty() -> Predicate<NSDictionary> {
+public func beEmpty() -> Nimble.Predicate<NSDictionary> {
     return Predicate.simple("be empty") { actualExpression in
         guard let actual = try actualExpression.evaluate() else { return .fail }
         return PredicateStatus(bool: actual.count == 0)
@@ -61,7 +61,7 @@ public func beEmpty() -> Predicate<NSDictionary> {
 
 /// A Nimble matcher that succeeds when a value is "empty". For collections, this
 /// means the are no items in that collection. For strings, it is an empty string.
-public func beEmpty() -> Predicate<NSArray> {
+public func beEmpty() -> Nimble.Predicate<NSArray> {
     return Predicate.simple("be empty") { actualExpression in
         guard let actual = try actualExpression.evaluate() else { return .fail }
         return PredicateStatus(bool: actual.count == 0)
@@ -70,7 +70,7 @@ public func beEmpty() -> Predicate<NSArray> {
 
 /// A Nimble matcher that succeeds when a value is "empty". For collections, this
 /// means the are no items in that collection. For strings, it is an empty string.
-public func beEmpty() -> Predicate<NMBCollection> {
+public func beEmpty() -> Nimble.Predicate<NMBCollection> {
     return Predicate.simple("be empty") { actualExpression in
         guard let actual = try actualExpression.evaluate() else { return .fail }
         return PredicateStatus(bool: actual.count == 0)

@@ -5,7 +5,7 @@ import class Foundation.NSObject
 import typealias Foundation.TimeInterval
 import enum Dispatch.DispatchTimeInterval
 
-private func from(objcPredicate: NMBPredicate) -> Predicate<NSObject> {
+private func from(objcPredicate: NMBPredicate) -> Nimble.Predicate<NSObject> {
     return Predicate { actualExpression in
         let result = objcPredicate.satisfies(({ try actualExpression.evaluate() }),
                                              location: actualExpression.location)

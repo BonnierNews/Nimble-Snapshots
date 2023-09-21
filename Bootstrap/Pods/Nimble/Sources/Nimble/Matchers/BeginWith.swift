@@ -2,7 +2,7 @@ import Foundation
 
 /// A Nimble matcher that succeeds when the actual sequence's first element
 /// is equal to the expected value.
-public func beginWith<S: Sequence>(_ startingElement: S.Element) -> Predicate<S> where S.Element: Equatable {
+public func beginWith<S: Sequence>(_ startingElement: S.Element) -> Nimble.Predicate<S> where S.Element: Equatable {
     return Predicate.simple("begin with <\(startingElement)>") { actualExpression in
         guard let actualValue = try actualExpression.evaluate() else { return .fail }
 
@@ -13,7 +13,7 @@ public func beginWith<S: Sequence>(_ startingElement: S.Element) -> Predicate<S>
 
 /// A Nimble matcher that succeeds when the actual collection's first element
 /// is equal to the expected object.
-public func beginWith(_ startingElement: Any) -> Predicate<NMBOrderedCollection> {
+public func beginWith(_ startingElement: Any) -> Nimble.Predicate<NMBOrderedCollection> {
     return Predicate.simple("begin with <\(startingElement)>") { actualExpression in
         guard let collection = try actualExpression.evaluate() else { return .fail }
         guard collection.count > 0 else { return .doesNotMatch }
@@ -30,7 +30,7 @@ public func beginWith(_ startingElement: Any) -> Predicate<NMBOrderedCollection>
 
 /// A Nimble matcher that succeeds when the actual string contains expected substring
 /// where the expected substring's location is zero.
-public func beginWith(_ startingSubstring: String) -> Predicate<String> {
+public func beginWith(_ startingSubstring: String) -> Nimble.Predicate<String> {
     return Predicate.simple("begin with <\(startingSubstring)>") { actualExpression in
         guard let actual = try actualExpression.evaluate() else { return .fail }
 

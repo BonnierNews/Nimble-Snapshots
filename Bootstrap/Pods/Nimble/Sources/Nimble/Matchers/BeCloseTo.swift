@@ -38,7 +38,7 @@ internal func isCloseTo(
 public func beCloseTo<Value: FloatingPoint>(
     _ expectedValue: Value,
     within delta: Value = defaultDelta()
-) -> Predicate<Value> {
+) -> Nimble.Predicate<Value> {
     return Predicate.define { actualExpression in
         return isCloseTo(try actualExpression.evaluate(), expectedValue: expectedValue, delta: delta)
     }
@@ -51,7 +51,7 @@ public func beCloseTo<Value: FloatingPoint>(
 public func beCloseTo<Value: NMBDoubleConvertible>(
     _ expectedValue: Value,
     within delta: Double = DefaultDelta
-) -> Predicate<Value> {
+) -> Nimble.Predicate<Value> {
     return Predicate.define { actualExpression in
         return isCloseTo(try actualExpression.evaluate(), expectedValue: expectedValue, delta: delta)
     }
@@ -60,7 +60,7 @@ public func beCloseTo<Value: NMBDoubleConvertible>(
 private func beCloseTo(
     _ expectedValue: NMBDoubleConvertible,
     within delta: Double = DefaultDelta
-) -> Predicate<NMBDoubleConvertible> {
+) -> Nimble.Predicate<NMBDoubleConvertible> {
     return Predicate.define { actualExpression in
         return isCloseTo(try actualExpression.evaluate(), expectedValue: expectedValue, delta: delta)
     }
@@ -99,7 +99,7 @@ extension NMBPredicate {
 public func beCloseTo<Value: FloatingPoint, Values: Collection>(
     _ expectedValues: Values,
     within delta: Value = defaultDelta()
-) -> Predicate<Values> where Values.Element == Value {
+) -> Nimble.Predicate<Values> where Values.Element == Value {
     let errorMessage = "be close to <\(stringify(expectedValues))> (each within \(stringify(delta)))"
     return Predicate.simple(errorMessage) { actualExpression in
         guard let actualValues = try actualExpression.evaluate() else {

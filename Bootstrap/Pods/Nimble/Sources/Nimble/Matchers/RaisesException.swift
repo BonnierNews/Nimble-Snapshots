@@ -18,7 +18,7 @@ public func raiseException<Out>(
     reason: String? = nil,
     userInfo: NSDictionary? = nil,
     closure: ((NSException) -> Void)? = nil
-) -> Predicate<Out> {
+) -> Nimble.Predicate<Out> {
     return raiseException(named: named?.rawValue, reason: reason, userInfo: userInfo, closure: closure)
 }
 
@@ -36,7 +36,7 @@ public func raiseException<Out>(
     reason: String? = nil,
     userInfo: NSDictionary? = nil,
     closure: ((NSException) -> Void)? = nil
-) -> Predicate<Out> {
+) -> Nimble.Predicate<Out> {
     return Predicate { actualExpression in
         var exception: NSException?
         let capture = NMBExceptionCapture(handler: ({ e in
@@ -153,7 +153,7 @@ public class NMBObjCRaiseExceptionPredicate: NMBPredicate {
         _userInfo = userInfo
         _block = block
 
-        let predicate: Predicate<NSObject> = raiseException(
+        let predicate: Nimble.Predicate<NSObject> = raiseException(
             named: name,
             reason: reason,
             userInfo: userInfo,
